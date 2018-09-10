@@ -43,11 +43,16 @@ $(document).ready(function(){
 
         $.get(queryURL).then( data => { 
             let json = JSON.stringify(data);
-            
-            console.log(data.data[0]);
 
             for(i = 0; i < limit; i++){
-                $(".gifs").append(`<iframe src = "${data.data[i].embed_url}" />`);
+                //$(".gifs").append(`<iframe src = "${data.data[i].embed_url}" />`);
+                //<img class="card-img-top" src="${data.data[i].images.fixed_height_still.url}" alt="Card image cap" />
+                $(".gifs").append(`<div class="card" style="width: 18rem; border-style: none; margin: 0;">
+                <iframe class="card-img-top" src="${data.data[i].embed_url}" />
+                <div class="card-body">
+                  <h5 class="card-title">rating: ${data.data[i].rating}</h5>
+                </div>
+              </div>`);
             }
 
         })

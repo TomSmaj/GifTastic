@@ -5,3 +5,9 @@
 iframe{
     border: 0;
 }
+
+.card{
+    border-style: none;
+    border-color: transparent;
+    margin-right: 0;
+}
