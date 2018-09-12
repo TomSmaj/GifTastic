@@ -2,12 +2,9 @@
     margin: 5px;
 }
 
-iframe{
-    border: 0;
-}
-
-.card{
-    border-style: none;
-    border-color: transparent;
-    margin-right: 0;
+.gif-box{
+    text-align: center;
+    min-width: 50px;
+    min-height: 50px;
+    display: block;
 }

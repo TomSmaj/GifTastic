@@ -44,17 +44,45 @@ $(document).ready(function(){
         $.get(queryURL).then( data => { 
             let json = JSON.stringify(data);
 
+
             for(i = 0; i < limit; i++){
-                //$(".gifs").append(`<iframe src = "${data.data[i].embed_url}" />`);
-                //<img class="card-img-top" src="${data.data[i].images.fixed_height_still.url}" alt="Card image cap" />
-                $(".gifs").append(`<div class="card" style="width: 18rem; border-style: none; margin: 0;">
-                <iframe class="card-img-top" src="${data.data[i].embed_url}" />
+                /*$(".gifs").append(`<div class="card" style="width: 18rem; border-style: none; margin: 0;">
+                <img class="card-img-top" src="${data.data[i].images.fixed_height_still.url}" />
                 <div class="card-body">
                   <h5 class="card-title">rating: ${data.data[i].rating}</h5>
                 </div>
-              </div>`);
-            }
+              </div>`);*/
 
+                let div = $('<div>');
+                div.attr("class", "gif-box");
+                let img = $('<img>');
+                let h = $('<h5>');
+                img.attr("src", data.data[i].images.original_still.url);
+                img.attr("still", data.data[i].images.original_still.url);
+                img.attr("moving", data.data[i].images.original.url);
+                h.html("Rating: <strong>" + data.data[i].rating + "</strong>");
+                div.append(img);
+                div.append(h);
+
+                img.attr("clicked", "false");
+
+                $(".gifs").append(div);
+
+                img.on("click", function(){
+                    console.log();
+                    if($(this).attr("clicked") === "false"){
+                        $(this).attr("src", $(this).attr("moving"));
+                        $(this).attr("clicked", "true");
+                    }
+                    else if($(this).attr("clicked") === "true"){
+                        $(this).attr("src", $(this).attr("still"));
+                        $(this).attr("clicked", "false");
+                    }
+                })
+
+
+            }
+            
         })
 
     });
